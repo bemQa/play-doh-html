@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'VAGRounded TL';
+    src: url('VAGRoundedTL-Regular.eot');
+    src: url('VAGRoundedTL-Regular.eot?#iefix') format('embedded-opentype'),
+        url('VAGRoundedTL-Regular.woff2') format('woff2'),
+        url('VAGRoundedTL-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+

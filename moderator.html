@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<section class="all-works-block">
+		<div class="container">
+			<div class="title">Работы участников</div>
+			<div class="all-works">
+				{% for work in works reversed %}
+					{% if user.is_staff %}
+					<div class="work moderator-mode">
+						<div class="work-wrapper">
+							<div class="work-img">
+								<a href="/media/{{work.photo}}" data-lightbox="image" data-title="{{work.profile.firstName}} {{work.profile.lastName|slice:':1'}}."><img src="/media/{{work.thumbnail}}" alt="Работа участника {{work.profile.firstName}} {{work.profile.lastName|slice:':1'}}."></a>
+							</div>
+							<div class="work-name">{{work.profile.firstName}} {{work.profile.lastName|slice:":1"}}.</div>
+							<form class="moderator-form">
+								<input type="hidden" class="work-id" value="{{work.pk}}">
+								<div class="input-field">
+			                		<div class="select feedback-select">
+										<select name="theme" data-placeholder="Тема сообщения" required>
+			                                <option value=""></option>
+			                                <option value="NEW">На рассмотрении</option>
+			                                <option value="APP">Потверждена</option>
+			                                <option value="RE1">Отклонена из-за несоблюдения критериев отбора</option>
+			                                <option value="RE2">Отклонена из-за несоответствия требований</option>
+			                            </select>
+									</div>
+			                	</div>
+								<div class="btn-wrapper">
+									<button class="btn btn2 js-submit">Отправить</button>
+								</div>
+			               	</form>
+						</div>
+					</div>
+					{% else %}
+					<div class="work">
+						<div class="work-wrapper">
+							<div class="work-img">
+								<a href="/media/{{work.photo}}" data-lightbox="image" data-title="{{work.profile.firstName}} {{work.profile.lastName|slice:':1'}}."><img src="/media/{{work.thumbnail}}" alt="Работа участника {{work.profile.firstName}} {{work.profile.lastName|slice:':1'}}."></a>
+							</div>
+							<div class="work-name">{{work.profile.firstName}} {{work.profile.lastName|slice:":1"}}.</div>
+						</div>
+					</div>
+					{% endif %}
+				{% endfor %}
+				<div class="fake-work"></div>
+				<div class="fake-work"></div>
+				<div class="fake-work"></div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
